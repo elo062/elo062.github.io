@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ma 1ère Map Google</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+    // On crée une map
+    function initMap() {
+      // On donne les coordonnées de Narbonne et Montpellier
+  var narbonne = {lat: 43.184277, lng: 3.0030779999999595};
+  var montpellier = {lat: 43.610769, lng: 3.8767159999999876};
+
+// On l'insère dans le doc html, on décide du zoom et du centre de la carte
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 9,
+    center: narbonne
+  });
+
+  // On insère des marqueurs sur Narbonne et Montpellier
+    var marker = new google.maps.Marker({
+      position: narbonne,
+      map: map,
+      title: 'Narbonne'
+    });
+
+      var markerBis = new google.maps.Marker({
+        position: montpellier,
+        map: map,
+        title: 'Montpellier'
+      });
+
+// On déclare le contenu de la bulle
+  var infoNarbonne = '<p><b>Narbonne : </b><a href="https://fr.wikipedia.org/wiki/Narbonne">Lien wikipédia</a></p>'
+  var infoMontpellier = '<p><b>Montpellier : </b><a href="https://fr.wikipedia.org/wiki/Montpellier">Lien wikipédia</a></p>'
+
+// On l'insère
+  var infowindowNarbonne = new google.maps.InfoWindow({
+    content: infoNarbonne
+  });
+  var infowindowMontpellier = new google.maps.InfoWindow({
+    content: infoMontpellier
+  });
+
+    // On décide que la bulle n'apparaît que lorsqu'on clique sur le marqueur
+
+  marker.addListener('click', function() {
+    infowindowNarbonne.open(map, marker);
+  });
+
+  markerBis.addListener('click', function() {
+    infowindowMontpellier.open(map, markerBis);
+  });
+}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCTvGBBx38PPztpAMKSk80MiZD8HqIu_s&callback=initMap"
+    async defer></script>
+  </body>
+</html>
