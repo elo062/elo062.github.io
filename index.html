@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>OpenStreetMap Leaflet</title>
   <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css" />
+   <script src="node_modules/leaflet/dist/leaflet.js"></script>
     <style media="screen">
       #macarte {
         height: 180px;
@@ -14,7 +15,6 @@
   <body>
 
     <div id="macarte" style="width:645px; height:490px"></div>
-   <script src="node_modules/leaflet/dist/leaflet.js"></script>
 
      <script type="text/javascript">
      var carte = L.map('macarte').setView([43.456707, 3.421555], 9);
